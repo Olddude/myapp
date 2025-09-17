@@ -11,13 +11,13 @@ import { provideEffects } from '@ngrx/effects';
 import { appRoutes } from './app.routes';
 import { AppState } from '@myapp/types';
 import { userReducer } from './user/user.reducer';
-import { settingsReducer } from './settings/settings.reducer';
+import { homeReducer } from './home/home.reducer';
 import { environment } from '../environments/environment';
 
 
 const reducers: ActionReducerMap<AppState> = {
+  home: homeReducer,
   user: userReducer,
-  settings: settingsReducer,
 };
 
 const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];

@@ -2,13 +2,13 @@ import { inject, Injectable } from "@angular/core";
 import { Actions, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { switchMap } from "rxjs";
-import { selectAllSettings } from "./settings.selectors";
-import { setTheme } from "./settings.actions";
+import { selectAllSettings } from "./home.selectors";
+import { setTheme } from "./home.actions";
 
 @Injectable({
     providedIn: 'root'
 })
-export class SettingsEffects {
+export class HomeEffects {
     #actions = inject(Actions);
     #store = inject(Store);
 
