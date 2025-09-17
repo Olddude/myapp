@@ -26,8 +26,7 @@
       "options": {
         "target": "myapp:serve-original:development",
         "rebuildDelay": 0,
-        "dev": true,
-        "port": 4201
+        "dev": true
       }
     },
     "extract-i18n": {
