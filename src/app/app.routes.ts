@@ -12,10 +12,9 @@ export const appRoutes: Route[] = [
     },
     {
         path: 'myapp2',
-        loadComponent: () =>
-        loadRemoteModule({
+        loadComponent: () => loadRemoteModule({
             remoteEntry: 'http://localhost:4201/remoteEntry.json',
-            exposedModule: './AppComponent'
+            exposedModule: './AppComponent',
         }).then(m => m.AppComponent)
     }
 ];
