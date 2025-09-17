@@ -5,10 +5,10 @@ const {
 
 module.exports = withNativeFederation({
   name: 'myapp',
-  
+
   exposes: {
-    './Routes': './src/app/app.routes.ts',
-    './AppComponent': './src/app/app.ts',
+    './Routes': './src/app/remote-entry/entry.routes.ts',
+    './App': './src/app/app.ts',
   },
   
   shared: {
