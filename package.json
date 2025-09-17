@@ -5,10 +5,12 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "lint": "nx lint"
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "~20.2.0",
     "@angular/common": "~20.2.0",
     "@angular/compiler": "~20.2.0",
     "@angular/core": "~20.2.0",
@@ -21,10 +23,13 @@
     "@ngrx/router-store": "^20.0.1",
     "@ngrx/store": "^20.0.1",
     "@ngrx/store-devtools": "^20.0.1",
+    "@softarc/native-federation-node": "^2.0.10",
     "rxjs": "~7.8.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
+    "@angular-architects/native-federation": "^20.1.6",
+    "@angular-devkit/build-angular": "^20.3.2",
     "@angular-devkit/core": "~20.2.0",
     "@angular-devkit/schematics": "~20.2.0",
     "@angular/build": "^20.3.1",
@@ -40,9 +45,6 @@
     "@nx/web": "21.5.2",
     "@nx/workspace": "21.5.2",
     "@schematics/angular": "~20.2.0",
-    "@swc-node/register": "~1.9.1",
-    "@swc/core": "~1.5.7",
-    "@swc/helpers": "~0.5.11",
     "@types/jest": "^30.0.0",
     "@types/node": "20.19.9",
     "@typescript-eslint/utils": "^8.40.0",

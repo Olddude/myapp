@@ -1,6 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
-import { UserState, initialUserState } from '../app.state';
 import * as UserActions from './user.actions';
+import type { UserState } from '@myapp/types';
+
+export const initialUserState: UserState = {
+  currentUser: null,
+  isAuthenticated: false,
+  loading: false,
+  error: null,
+};
 
 export const userReducer = createReducer(
   initialUserState,

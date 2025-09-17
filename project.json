@@ -8,12 +8,72 @@
   "tags": [],
   "targets": {
     "build": {
+      "executor": "@angular-architects/native-federation:build",
+      "options": {},
+      "configurations": {
+        "production": {
+          "target": "myapp:esbuild:production"
+        },
+        "development": {
+          "target": "myapp:esbuild:development",
+          "dev": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-architects/native-federation:build",
+      "options": {
+        "target": "myapp:serve-original:development",
+        "rebuildDelay": 0,
+        "dev": true,
+        "port": 4201
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n",
+      "options": {
+        "buildTarget": "myapp:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": [
+          "./src"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectName}"
+      ],
+      "options": {
+        "jestConfig": "jest.config.ts",
+        "tsConfig": "tsconfig.spec.json"
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "myapp:build",
+        "staticFilePath": "dist/myapp/browser",
+        "spa": true
+      }
+    },
+    "esbuild": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/myapp",
         "browser": "./src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -22,7 +82,9 @@
             "input": "public"
           }
         ],
-        "styles": ["./src/styles.scss"]
+        "styles": [
+          "./src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -48,46 +110,20 @@
       },
       "defaultConfiguration": "production"
     },
-    "serve": {
+    "serve-original": {
       "continuous": true,
       "executor": "@angular/build:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "myapp:build:production"
+          "buildTarget": "myapp:esbuild:production"
         },
         "development": {
-          "buildTarget": "myapp:build:development"
+          "buildTarget": "myapp:esbuild:development"
         }
       },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular/build:extract-i18n",
+      "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "myapp:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["./src"]
-      }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectName}"],
-      "options": {
-        "jestConfig": "jest.config.ts",
-        "tsConfig": "tsconfig.spec.json"
-      }
-    },
-    "serve-static": {
-      "continuous": true,
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "myapp:build",
-        "staticFilePath": "dist/myapp/browser",
-        "spa": true
+        "port": 4200
       }
     }
   }

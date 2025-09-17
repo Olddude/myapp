@@ -5,11 +5,22 @@ import {
   isDevMode,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideStore } from '@ngrx/store';
+import { ActionReducerMap, MetaReducer, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import { appRoutes } from './app.routes';
-import { reducers, metaReducers } from './store';
+import { AppState } from '@myapp/types';
+import { userReducer } from './user/user.reducer';
+import { settingsReducer } from './settings/settings.reducer';
+import { environment } from '../environments/environment';
+
+
+const reducers: ActionReducerMap<AppState> = {
+  user: userReducer,
+  settings: settingsReducer,
+};
+
+const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];
 
 export const appConfig: ApplicationConfig = {
   providers: [
