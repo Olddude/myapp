@@ -1,4 +1,4 @@
-import { createFeature, provideState } from '@ngrx/store';
+import { provideState } from '@ngrx/store';
 import { loadRemoteModule } from '@angular-architects/native-federation';
 import { Route } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
@@ -14,7 +14,7 @@ export const appRoutes: Route[] = [
         providers: [
             provideState(homeFeature),
             provideEffects([HomeEffects])
-        ],
+        ]
     },
     {
         path: 'user',
@@ -22,13 +22,19 @@ export const appRoutes: Route[] = [
         providers: [
             provideState(userFeature),
             provideEffects([UserEffects])
-        ],
+        ]
     },
-    // {
-    //     path: 'myapp2',
-    //     loadChildren: () => loadRemoteModule('myapp2', './Routes'),
-    //     providers: [
-    //         provideFeature()
-    //     ]
-    // }
+    {
+        path: 'myapp2',
+        loadComponent: () => loadRemoteModule({
+            exposedModule: './App',
+            remoteName: 'myapp2',
+            remoteEntry: 'http://localhost:4201/remoteEntry.js'
+        }),
+        loadChildren: () => loadRemoteModule({
+            exposedModule: './Routes',
+            remoteName: 'myapp2',
+            remoteEntry: 'http://localhost:4201/remoteEntry.js'
+        })
+    }
 ];

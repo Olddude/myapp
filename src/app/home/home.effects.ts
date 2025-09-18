@@ -5,9 +5,7 @@ import { switchMap } from "rxjs";
 import { selectAllSettings } from "./home.selectors";
 import { setTheme } from "./home.actions";
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class HomeEffects {
     #actions = inject(Actions);
     #store = inject(Store);

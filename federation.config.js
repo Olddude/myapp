@@ -6,10 +6,10 @@ const {
 module.exports = withNativeFederation({
   name: 'myapp',
 
-  // exposes: {
-  //   './Routes': './src/app/app.routes.ts',
-  //   './App': './src/app/app.ts',
-  // },
+  exposes: {
+    './Routes': './src/app/app.routes.ts',
+    './App': './src/app/app.ts',
+  },
 
   shared: {
     ...shareAll({

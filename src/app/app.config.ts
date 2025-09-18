@@ -11,12 +11,6 @@ import { provideEffects } from '@ngrx/effects';
 import { appRoutes } from './app.routes';
 import { environment } from '../environments/environment';
 
-export type HomeState = {
-  theme: 'light' | 'dark';
-  language: string;
-  notifications: boolean;
-}
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),

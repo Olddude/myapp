@@ -4,9 +4,7 @@ import { Store } from "@ngrx/store";
 import { switchMap } from "rxjs";
 import { selectCurrentUser } from "./user.selectors";
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class UserEffects {
     #actions = inject(Actions);
     #store = inject(Store);
