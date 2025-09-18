@@ -1,40 +1,46 @@
 <div id="user-page" class="app__page">
   <h2>User Page</h2>
 
-  <div *ngIf="loading$ | async" class="loading">
-    Loading user data...
-  </div>
-
-  <div *ngIf="error$ | async as error" class="error">
-    Error: {{ error }}
-  </div>
-
-  <div *ngIf="isAuthenticated$ | async; else notAuthenticated">
-    <div *ngIf="currentUser$ | async as user" class="user-info">
-      <h3>User Information</h3>
-      <div class="info-item">
-        <span>ID:</span>
-        <span>{{ user.id }}</span>
-      </div>
-      <div class="info-item">
-        <span>Name:</span>
-        <span>{{ user.name }}</span>
-      </div>
-      <div class="info-item">
-        <span>Email:</span>
-        <span>{{ user.email }}</span>
-      </div>
-      <div class="info-item">
-        <span>Role:</span>
-        <span>{{ user.role }}</span>
-      </div>
+  @if (loading$ | async) {
+    <div class="loading">
+      Loading user data...
     </div>
-  </div>
+  }
 
-  <ng-template #notAuthenticated>
+  @if (error$ | async; as error) {
+    <div class="error">
+      Error: {{ error }}
+    </div>
+  }
+
+  @if (isAuthenticated$ | async) {
+    <div>
+      @if (currentUser$ | async; as user) {
+        <div class="user-info">
+          <h3>User Information</h3>
+          <div class="info-item">
+            <span>ID:</span>
+            <span>{{ user.id }}</span>
+          </div>
+          <div class="info-item">
+            <span>Name:</span>
+            <span>{{ user.name }}</span>
+          </div>
+          <div class="info-item">
+            <span>Email:</span>
+            <span>{{ user.email }}</span>
+          </div>
+          <div class="info-item">
+            <span>Role:</span>
+            <span>{{ user.role }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
     <div class="not-authenticated">
       <p>You are not currently authenticated.</p>
       <p>Please log in to view user information.</p>
     </div>
-  </ng-template>
+  }
 </div>
