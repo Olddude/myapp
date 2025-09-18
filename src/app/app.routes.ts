@@ -10,6 +10,11 @@ import { UserEffects } from './user/user.effects';
 export const appRoutes: Route[] = [
     {
         path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+    },
+    {
+        path: 'home',
         loadComponent: () => import('./home/home.page').then(m => m.HomePage),
         providers: [
             provideState(homeFeature),
