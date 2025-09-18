@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import type { HomeState } from '@myapp/types';
 import * as HomeActions from './home.actions';
+import { HomeState } from '../app.config';
 
 export const initialHomeState: HomeState = {
   theme: 'light',

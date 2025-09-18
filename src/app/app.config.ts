@@ -9,11 +9,35 @@ import { ActionReducerMap, MetaReducer, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import { appRoutes } from './app.routes';
-import { AppState } from '@myapp/types';
+
 import { userReducer } from './user/user.reducer';
 import { homeReducer } from './home/home.reducer';
 import { environment } from '../environments/environment';
 
+export type AppState = {
+  home: HomeState;
+  user: UserState;
+}
+
+export type HomeState = {
+  theme: 'light' | 'dark';
+  language: string;
+  notifications: boolean;
+}
+
+export type UserState = {
+  currentUser: User | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+  error: string | null;
+}
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+}
 
 const reducers: ActionReducerMap<AppState> = {
   home: homeReducer,

@@ -7,7 +7,7 @@ module.exports = withNativeFederation({
   name: 'myapp',
 
   exposes: {
-    './Routes': './src/app/remote-entry/entry.routes.ts',
+    './Routes': './src/app/app.routes.ts',
     './App': './src/app/app.ts',
   },
   
