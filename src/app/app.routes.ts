@@ -1,11 +1,7 @@
-import { provideState } from '@ngrx/store';
 import { loadRemoteModule } from '@angular-architects/native-federation';
 import { Route } from '@angular/router';
-import { provideEffects } from '@ngrx/effects';
-import { HomeEffects } from './home/home.effects';
-import { homeFeature } from './home/home.reducer';
-import { userFeature } from './user/user.reducer';
-import { UserEffects } from './user/user.effects';
+import { homeProviders } from './home';
+import { userProviders } from './user';
 
 export const appRoutes: Route[] = [
     {
@@ -16,30 +12,33 @@ export const appRoutes: Route[] = [
     {
         path: 'home',
         loadComponent: () => import('./home/home.page').then(m => m.HomePage),
-        providers: [
-            provideState(homeFeature),
-            provideEffects([HomeEffects])
-        ]
+        providers: homeProviders
     },
     {
         path: 'user',
         loadComponent: () => import('./user/user.page').then(m => m.UserPage),
-        providers: [
-            provideState(userFeature),
-            provideEffects([UserEffects])
-        ]
+        providers: userProviders,
     },
     {
         path: 'myapp2',
         loadComponent: () => loadRemoteModule({
             exposedModule: './App',
             remoteName: 'myapp2',
-            remoteEntry: 'http://localhost:4201/remoteEntry.js'
+            remoteEntry: 'http://localhost:4201/remoteEntry.js',
+            fallback: () => import('./not-found/not-found.page')
+                .then(m => m.NotFoundPage)
         }),
         loadChildren: () => loadRemoteModule({
             exposedModule: './Routes',
             remoteName: 'myapp2',
-            remoteEntry: 'http://localhost:4201/remoteEntry.js'
+            remoteEntry: 'http://localhost:4201/remoteEntry.js',
+            fallback: () => import('./not-found/not-found.page')
+                .then(m => m.NotFoundPage)
         })
+    },
+    {
+        path: '**',
+        loadComponent: () => import('./not-found/not-found.page')
+            .then(m => m.NotFoundPage)
     }
 ];

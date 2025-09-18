@@ -1,3 +1,7 @@
+import { provideEffects } from "@ngrx/effects";
+import { provideState } from "@ngrx/store";
+import { userFeature } from "./user.reducer";
+import { UserEffects } from "./user.effects";
 
 export type UserState = {
   currentUser: User | null;
@@ -19,3 +23,8 @@ export const initialUserState: UserState = {
   loading: false,
   error: null,
 };
+
+export const userProviders = [
+    provideState(userFeature),
+    provideEffects([UserEffects])
+];
