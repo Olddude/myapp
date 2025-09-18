@@ -7,7 +7,7 @@ import { selectCurrentUser } from "./user.selectors";
 @Injectable({
     providedIn: 'root'
 })
-export class SettingsEffects {
+export class UserEffects {
     #actions = inject(Actions);
     #store = inject(Store);
 

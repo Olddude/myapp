@@ -5,19 +5,11 @@ import {
   isDevMode,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { ActionReducerMap, MetaReducer, provideStore } from '@ngrx/store';
+import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import { appRoutes } from './app.routes';
-
-import { userReducer } from './user/user.reducer';
-import { homeReducer } from './home/home.reducer';
 import { environment } from '../environments/environment';
-
-export type AppState = {
-  home: HomeState;
-  user: UserState;
-}
 
 export type HomeState = {
   theme: 'light' | 'dark';
@@ -25,33 +17,24 @@ export type HomeState = {
   notifications: boolean;
 }
 
-export type UserState = {
-  currentUser: User | null;
-  isAuthenticated: boolean;
-  loading: boolean;
-  error: string | null;
-}
-
-export type User = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-}
-
-const reducers: ActionReducerMap<AppState> = {
-  home: homeReducer,
-  user: userReducer,
-};
-
-const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
-    provideStore(reducers, { metaReducers }),
+    provideStore({}, {
+      metaReducers: !environment.production ? [] : [],
+      initialState: {},
+      reducerFactory: undefined,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictActionSerializability: true,
+        strictStateSerializability: true,
+        strictActionWithinNgZone: true,
+        strictActionTypeUniqueness: true,
+      },
+    }),
     provideEffects([]),
     provideStoreDevtools({
       maxAge: 25,
