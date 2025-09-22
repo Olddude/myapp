@@ -25,6 +25,7 @@
     "@ngrx/store": "^20.0.1",
     "@ngrx/store-devtools": "^20.0.1",
     "@softarc/native-federation-node": "^2.0.10",
+    "es-module-shims": "^2.6.2",
     "rxjs": "~7.8.0",
     "zone.js": "~0.15.0"
   },
