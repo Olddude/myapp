@@ -30,7 +30,6 @@ export const appRoutes: Route[] = [
     },
     {
         path: '**',
-        loadComponent: () => import('./not-found/not-found.page')
-            .then(m => m.NotFoundPage)
+        loadComponent: () => import('./not-found/not-found.page').then(m => m.NotFoundPage)
     }
 ];
