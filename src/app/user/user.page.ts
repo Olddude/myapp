@@ -11,7 +11,7 @@ import {
 @Component({
     standalone: true,
     imports: [CommonModule, AsyncPipe],
-    selector: 'app-user',
+    selector: 'app-myapp-user',
     templateUrl: './user.page.html',
     styleUrls: ['./user.page.scss'],
 })
