@@ -6,7 +6,7 @@ import { CommonModule } from "@angular/common";
     imports: [CommonModule],
     selector: 'app-myapp-not-found',
     template: `
-        <h2>Not Found</h2>
+        <h2>MYAPP Not Found</h2>
         <span>The page you are looking for does not exist.</span>
     `,
     styles: [``],
