@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from "@angular/core";
 import { AsyncPipe, CommonModule } from "@angular/common";
 import { Store } from "@ngrx/store";
 import { selectLanguage, selectNotifications, selectTheme } from "./home.selectors";
-import { setTheme } from "./home.actions";
+import { setLanguage, setTheme, toggleNotifications } from "./home.actions";
 
 @Component({
     standalone: true,
@@ -19,5 +19,7 @@ export class HomePage implements OnInit {
 
     ngOnInit(): void {
         this.#store.dispatch(setTheme({ theme: 'dark' }));
+        this.#store.dispatch(setLanguage({ language: 'en' }));
+        this.#store.dispatch(toggleNotifications());
     }
 }
