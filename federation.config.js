@@ -19,8 +19,5 @@ module.exports = withNativeFederation({
     }),
   },
   
-  skip: [
-    // Add any packages that should not be shared
-    'rxjs/operators'
-  ]
+  skip: []
 });
