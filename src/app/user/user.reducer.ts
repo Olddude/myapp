@@ -35,6 +35,6 @@ export const userReducer = createReducer(
 );
 
 export const userFeature = createFeature({
-  name: 'user',
+  name: 'myapp-user',
   reducer: userReducer,
 });

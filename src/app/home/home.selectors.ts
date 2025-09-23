@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { HomeState } from '.';
 
-export const selectHomeState = createFeatureSelector<HomeState>('home');
+export const selectHomeState = createFeatureSelector<HomeState>('myapp-home');
 
 export const selectTheme = createSelector(
   selectHomeState,
